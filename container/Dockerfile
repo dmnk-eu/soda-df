@@ -1,4 +1,4 @@
-FROM ubuntu:16.10
+FROM ubuntu:16.04
 
 # install curl, Open JDK
 RUN set -x \
@@ -12,7 +12,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 WORKDIR /soda
 
 # download and extract Tomcat to '/opt/tomcat' and remove the admin tools
-RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.16/bin/apache-tomcat-8.5.16.tar.gz \
+RUN curl -O https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.41/bin/apache-tomcat-8.5.41.tar.gz \
 	&& mkdir /opt/tomcat \
 	&& tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1 \
 	&& rm apache-tomcat-8*tar.gz \
@@ -23,7 +23,7 @@ RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.16/bin/apache-tom
 	&& rm -rf /opt/tomcat/webapps/ROOT
 
 # download and put the MySQL driver into the tomcat libraries
-RUN curl -O http://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.42.tar.gz \
+RUN curl -O https://cdn.mysql.com//Downloads/Connector-J/mysql-connector-java-5.1.47.tar.gz \
 	&& mkdir connector-j \
 	&& tar xvf mysql-connector-java-*.tar.gz -C connector-j --strip-components=1 \
 	&& mv connector-j/mysql-connector-*.jar /opt/tomcat/lib \
