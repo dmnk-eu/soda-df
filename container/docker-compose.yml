@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+  soda:
+    build: .
+    ports:
+      - "80:8080"
+    # volumes:
+    # - "soda_data:/opt/soda/data"
+  mysqld:
+    image: mysql/mysql-server:5.7
+    command: --bind-address=0.0.0.0 --character-set-server=utf8 --collation-server=utf8_general_ci --max_allowed_packet=25M --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+    environment:
+      MYSQL_ROOT_PASSWORD: r00t
+      MYSQL_DATABASE: soda
+      MYSQL_USER: soda-user
+      MYSQL_PASSWORD: soda-pw
+    ports:
+      - "3306:3306"
+    # volumes:
+    # - "mysql_data:/var/lib/mysql"
+volumes:
+  soda_data:
+  mysql_data:
